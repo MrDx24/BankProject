@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.model.Customer;
 import com.model.Register;
 
 /**
@@ -31,7 +32,9 @@ public class RegisterController extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String accName = request.getParameter("acc_name");
+		String firstName = request.getParameter("first_name");
+		String middleName = request.getParameter("middle_name");
+		String lastName = request.getParameter("last_name");
 		String gender = request.getParameter("gender");
 		String dob = request.getParameter("dob");
 		String state = request.getParameter("state");
@@ -43,11 +46,14 @@ public class RegisterController extends HttpServlet {
 		String aadhar = request.getParameter("aadhar");
 		String pancard = request.getParameter("pancard");
 		String nationality = request.getParameter("nationality");
+		String accountType = request.getParameter("account_type");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String opdate = request.getParameter("opdate");
 		
-		Register r = new Register(accName, gender,dob ,state, city, area, pincode, email, mobile, aadhar, pancard, nationality, username, password, opdate);
+		Customer customer= new Customer(firstName, middleName, lastName, gender, dob, state, city, area, pincode, email, mobile, aadhar, pancard, nationality);
+		
+		Register r = new Register(customer, accountType, username, password, opdate);
 	}
 
 	/**
