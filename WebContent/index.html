@@ -8,45 +8,48 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- Material Kit CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet"  type="text/css" href="register.css">
 </head>
 <style>
     #body1{
-            background-image: url("img7.jpg");
+           /*  background-image: url("img7.jpg");
             background-repeat: no-repeat !important;
-            background-size: cover;
+            background-size: cover; */
     }
     option {
         background-color: rgba(203, 203, 179);
     }
 </style>
 
-<body class="container"  id="body1">
-    <h1 style="text-indent: 37%; color: #000000;">Registration Form</h1>
-    <form class="mt-3 p-3" onsubmit="return(validate());" name="myform">
+<body >
+
+	<div class="container"  id="body1">
+    
+	    <h2 class="head">Registration Form</h2>
+	    <form class="mt-3 p-3" name="myform" action="RegisterController" method="post">
         <div class="row p-3">
             <div class="form-group col-md-4">
-                <input type="text" class="form-control text-center" style="color: #000000; background-color: #99ccff; " id="fname" name="fname1"
+                <input type="text" class="form-control text-center" id="first_name" name="first_name"
                     aria-describedby="First Name" placeholder="First Name" />
             </div>
             <div class="form-group col-md-4">
-                <input type="text" class="form-control text-center" style="color: #000000; background-color: #99ccff;" id="mname" name="mname1"
+                <input type="text" class="form-control text-center"   id="middle_name" name="middle_name"
                     aria-describedby="Middle Name" placeholder="Middle Name" />
             </div>
             <div class="form-group col-md-4">
-                <input type="text" class="form-control text-center" style="color: #000000; background-color: #99ccff;" id="lname" name="lname1"
+                <input type="text" class="form-control text-center"   id="last_name" name="last_name"
                     aria-describedby="Last Name" placeholder="Last Name" />
             </div>
         </div>
 
         <div class="row p-3">
             <div class="form-group col-md-6">
-                <select class="form-control selectpicker" data-style="btn btn-link" id="gender" name="gender1"
-                    style="text-indent: 45%; color: #000000; background-color: #99ccff;">
+                <select class="form-control selectpicker" data-style="btn btn-link" id="gender" name="gender"
+                    style="text-indent: 45%;">
                     <option selected disabled>Gender</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -55,16 +58,16 @@
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <input type="text" style="color: #000000; background-color: #99ccff;"  onfocus="(this.type='date')" onfocusout="(this.type='text')"
-                    class="form-control text-center" id="dob" aria-describedby="Date of Birth" name="dob1"
+                <input type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')"
+                    class="form-control text-center" id="dob" aria-describedby="Date of Birth" name="dob"
                     placeholder="Date of Birth" />
             </div>
         </div>
         <div class="row p-3">
             <div class="form-group col-md-3">
-                <select type="text" style="text-indent: 45%; color: #000000; background-color: #99ccff;" class="form-control text-center" id="state" name="state1"
-                        aria-describedby="State" placeholder="State">
-                 <option selected disabled>State</option>
+                <select style="text-indent: 25%;" class="form-control text-center" id="state" name="state"
+                        aria-describedby="State" >
+                 <option selected disabled>--Select State--</option>
                     <option>Maharashtra</option>
                     <option>Delhi</option>
                     <option>Gujrat</option>
@@ -74,9 +77,9 @@
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <select type="text" style="text-indent: 45%; color: #000000; background-color: #99ccff;" class="form-control text-center" id="city" name="city1"
-                    aria-describedby="City" placeholder="City">
-                    <option selected disabled>City</option>
+                <select style="text-indent: 25%;  " class="form-control text-center" id="city" name="city"
+                    aria-describedby="City" >
+                    <option selected disabled>--Select City--</option>
                     <option>Mumbai</option>
                     <option>Jaipur</option>
                     <option>Kolkata</option>
@@ -85,57 +88,61 @@
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <input type="text" style="color: #000000; background-color: #99ccff;" class="form-control text-center" id="area" name="area1"
+                <input type="text"   class="form-control text-center" id="area" name="area"
                     aria-describedby="Area" placeholder="Area" />
             </div>
             <div class="form-group col-md-3">
-                <input type="text" style="color: #000000; background-color: #99ccff;" class="form-control text-center" id="pincode" name="pincode1"
+                <input type="text"   class="form-control text-center" id="pincode" name="pincode"
                     aria-describedby="Pincode" placeholder="Pincode" />
             </div>
         </div>
+        
+        <div class="row p-3">
+            <div class="form-group col-md-6">
+                <input type="email"   class="form-control text-center" id="email" name="email"
+                    aria-describedby="Email Id" placeholder="Email Id" />
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text"   class="form-control text-center" id="mobile" name="mobile"
+                    aria-describedby="Contact Number" placeholder="Contact Number" />
+            </div>
+        </div>
+        
         <div class="row p-3">
             <div class="form-group col-md-12">
-                <input type="text" style="color: #000000; background-color: #99ccff;" class="form-control text-center" id="aadhar" name="aadhar1"
+                <input type="text"   class="form-control text-center" id="aadhar" name="aadhar"
                     aria-describedby="Aadhar Number" placeholder="Aadhar Number" />
             </div>
         </div>
         <div class="row p-3">
             <div class="form-group col-md-12">
-                <input type="text" style="color: #000000; background-color: #99ccff;" class="form-control text-center" id="pan" name="pan1"
+                <input type="text"   class="form-control text-center" id="pancard" name="pancard"
                     aria-describedby="PAN" placeholder="PAN" />
             </div>
         </div>
+        
         <div class="row p-3">
-            <div class="form-group col-md-6">
-                <input type="email" style="color: #000000; background-color: #99ccff;" class="form-control text-center" id="email" name="email1"
-                    aria-describedby="Email Id" placeholder="Email Id" />
-            </div>
-            <div class="form-group col-md-6">
-                <input type="text" style="color: #000000; background-color: #99ccff;" class="form-control text-center" id="contact" name="contact1"
-                    aria-describedby="Contact Number" placeholder="Contact Number" />
+            <div class="form-group col-md-12">
+                <input type="text"   class="form-control text-center" id="nationality"
+                    name="nationality" aria-describedby="Nationality" placeholder="Nationality" />
             </div>
         </div>
         <div class="row p-3">
             <div class="form-group col-md-12">
-                <input type="text" style="color: #000000; background-color: #99ccff;" class="form-control text-center" id="natianality"
-                    name="nationality1" aria-describedby="Nationality" placeholder="Nationality" />
+                <input type="text"   class="form-control text-center" id="username"
+                    name="username" aria-describedby="Username" placeholder="Username" />
             </div>
         </div>
-        <input type="submit" name="submit" value="Submit" class="btn btn-success" />
+        <div class="row p-3">
+            <div class="form-group col-md-12">
+                <input type="password"   class="form-control text-center" id="password"
+                    name="password" aria-describedby="Password" placeholder="Password" />
+            </div>
+        </div>
+        <input type="submit" name="submit" value="Submit" class="btn btn-success"  />
     </form>
-    <script type="text/javascript">
-        function validate() {
-            if (document.myform.fname1.value == "" || document.myform.mname1.value == "" || document.myform.lname1.value == "" || document.myform.aadhar1.value == "" ||
-                document.myform.city1.value == "" || document.myform.pan1.value == "" || document.myform.state1.value == "" || document.myform.email1.value == "" ||
-                document.myform.contact1.value == "" || document.myform.nationality1.value == "" || document.myform.area1.value == "" || document.myform.dob1.value == "" ||
-                document.myform.gender1.value == ""
-            ) {
-                alert(" Something is missing!!");
-                return false;
-            }
-            return true;
-        }
-    </script>
+    
+    </div>
 
 </body>
 

@@ -29,7 +29,7 @@ public class RegisterDao extends Dao implements AccountCreation {
 		return super.connect();
 	}
 
-	@Override
+//	@Override
 	public int setDetails(Register r) {
 		
 		try {
@@ -47,7 +47,7 @@ public class RegisterDao extends Dao implements AccountCreation {
 			clstmt.setString(8, customer.getArea());
 			clstmt.setInt(9, customer.getPincode());
 			clstmt.setString(10, customer.getEmail());
-			clstmt.setString(11, customer.getMobile());
+			clstmt.setString(11, customer.getMobile());	
 			clstmt.setString(12, customer.getAadhar());
 			clstmt.setString(13, customer.getPancard());
 			clstmt.setString(14, customer.getNationality());

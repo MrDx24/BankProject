@@ -11,7 +11,7 @@ public class Test {
 	public static void main(String[] args) {
 		LocalDateTime currentTime = LocalDateTime.now();
 		String date = currentTime.toString();
-		Customer c = new Customer("Ryan", "Ron"," Kooger", "Male","12/10/1999","Maharashtra", "Pune", "Kasba Peth", 411004, "ryan12@gmail.com", "9128734655", 
+		Customer c = new Customer("Daneil", "DRon","McKooger", "Male","12/10/1999","Maharashtra", "Pune", "Kasba Peth", 411004, "ryan12@gmail.com", "9128734655", 
 				"928314567834", "TGKKKW7856C", "Indian");
 		Register r = new Register(c,"Savings","ry12", "ry1234", date);
 		RegisterDao dao = new RegisterDao();

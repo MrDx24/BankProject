@@ -1,12 +1,16 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dao.RegisterDao;
 import com.model.Customer;
 import com.model.Register;
 
@@ -49,11 +53,23 @@ public class RegisterController extends HttpServlet {
 		String accountType = request.getParameter("account_type");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String opdate = request.getParameter("opdate");
+//		String opdate = request.getParameter("opdate");
 		
-		Customer customer= new Customer(firstName, middleName, lastName, gender, dob, state, city, area, pincode, email, mobile, aadhar, pancard, nationality);
+		Customer customer= new Customer(firstName, middleName, lastName, gender, dob, state, city, 
+				area, pincode, email, mobile, aadhar, pancard, nationality);
 		
+		LocalDate date = LocalDate.now();
+		String opdate = date.toString();
 		Register r = new Register(customer, accountType, username, password, opdate);
+		
+		RegisterDao rdao = new RegisterDao();
+		int i = rdao.setDetails(r);
+		if(i==0) {
+			System.out.println("Successful");
+		}
+		else {
+			System.out.println("not");
+		}
 	}
 
 	/**
