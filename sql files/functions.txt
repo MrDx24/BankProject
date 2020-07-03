@@ -1,0 +1,21 @@
+USE `bank`;
+DROP function IF EXISTS `checkUserExist`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `checkUserExist`(accno INT) RETURNS int(11)
+BEGIN
+	declare res INT;
+	select customer_id into res 
+    from accounts 
+    where account_no=accno;
+    
+    if res >=0 then
+		RETURN 1;
+	else
+		RETURN -1;
+	end if;
+END$$
+
+DELIMITER ;
+
