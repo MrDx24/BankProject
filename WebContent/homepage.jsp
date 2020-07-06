@@ -15,8 +15,8 @@
 <body>
     <div class="row" style="border : 1px solid black ;height: 280px; ">
     	<div class="container col-md-6 text-center" style="border : 1px solid black">
-		    <form>
-				<button class="btn btn-success">Transfer</button>
+		    <form action="TransactionController" method="post">
+				<button class="btn btn-success" >Transaction</button>
 		    </form>
 		</div>
 		<div class="container col-md-6 text-center" style="border : 1px solid black">
@@ -29,7 +29,7 @@
     <div class="row"style="border : 1px solid black; height: 280px; ">
     	<div class="container col-md-6 text-center" style="border : 1px solid black">
 		    <form>
-				<button class="btn btn-success">Transfer</button>
+				<button class="btn btn-success" >Transfer</button>
 		    </form>
 		 </div>
 		 <div class="container col-md-6 text-center" style="border : 1px solid black">   

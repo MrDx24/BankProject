@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.dao.LoginDao;
 import com.model.Login;
 
-
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -62,7 +61,7 @@ public class LoginController extends HttpServlet {
 					session.setAttribute("error", " ");
 					session.setAttribute("acc_no", result);
 					System.out.println("Successful");
-					response.sendRedirect("cong.jsp");
+					response.sendRedirect("homepage.jsp");
 	
 				}
 	

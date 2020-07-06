@@ -1,6 +1,8 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -58,8 +60,10 @@ public class RegisterController extends HttpServlet {
 		Customer customer= new Customer(firstName, middleName, lastName, gender, dob, state, city, 
 				area, pincode, email, mobile, aadhar, pancard, nationality);
 		
-		LocalDate date = LocalDate.now();
-		String opdate = date.toString();
+//		LocalDate date = LocalDate.now();
+		
+		String opdate="2014-05-14";
+//		String opdate = date.toString();
 		Register r = new Register(customer, accountType, username, password, opdate);
 		
 		RegisterDao rdao = new RegisterDao();
