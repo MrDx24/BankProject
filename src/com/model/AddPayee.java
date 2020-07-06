@@ -3,11 +3,13 @@ package com.model;
 public class AddPayee {
 	
 	int accountNo;
+	int payeeAccNo;
 	String accountName;
 	String accountType;
-	public AddPayee(int accountNo, String accountName, String accountType) {
+	public AddPayee(int accountNo, int payeeAccNo, String accountName, String accountType) {
 		super();
 		this.accountNo = accountNo;
+		this.payeeAccNo = payeeAccNo;
 		this.accountName = accountName;
 		this.accountType = accountType;
 	}
@@ -16,6 +18,14 @@ public class AddPayee {
 	}
 	public void setAccountNo(int accountNo) {
 		this.accountNo = accountNo;
+	}
+	
+	
+	public int getPayeeAccNo() {
+		return payeeAccNo;
+	}
+	public void setPayeeAccNo(int payeeAccNo) {
+		this.payeeAccNo = payeeAccNo;
 	}
 	public String getAccountName() {
 		return accountName;

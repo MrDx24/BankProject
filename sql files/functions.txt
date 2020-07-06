@@ -1,20 +1,36 @@
-USE `bank`;
-DROP function IF EXISTS `checkUserExist`;
-
-DELIMITER $$
-USE `bank`$$
-CREATE DEFINER=`root`@`localhost` FUNCTION `checkUserExist`(accno INT) RETURNS int(11)
+add payee :-  
+CREATE DEFINER=`root`@`localhost` FUNCTION `checkUserExist`(accno INT(11), payeeaccNo INT(11), accname varchar(45), acctype varchar(45)) RETURNS int(11)
+    DETERMINISTIC
 BEGIN
 	declare res INT;
+    declare payeeCheck varchar(45);
 	select customer_id into res 
     from accounts 
-    where account_no=accno;
+    where account_no=payeeaccNo and account_type=acctype;
     
     if res >=0 then
-		RETURN 1;
+		select acc_name into payeeCheck from addpayee where payee_acc_no=payeeaccno;
+        if payeeCheck is not null then
+			RETURN -2;
+        else
+			insert into addpayee values(accno,payeeaccNo,accname,acctype);
+			RETURN 1;
+        end if;
 	else
 		RETURN -1;
 	end if;
+END
+
+
+payeelist :- 
+USE `bank`;
+DROP procedure IF EXISTS `payeeList`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE PROCEDURE payeeList (IN accno INT(11))
+BEGIN
+	select * from addpayee where acc_no = accno;
 END$$
 
 DELIMITER ;
