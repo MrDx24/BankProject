@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import com.model.Customer;
 import com.model.Register;
 import com.services.AccountCreation;
-import com.services.Main;
 
 public class RegisterDao extends Dao implements AccountCreation {
 

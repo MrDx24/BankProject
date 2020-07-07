@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.dao.LoginDao;
 import com.model.Login;
 
-
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

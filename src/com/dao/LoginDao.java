@@ -19,18 +19,14 @@ public class LoginDao extends Dao implements Authenticate{
 
 	}
 
-	public Connection orconnect() {
-		// TODO Auto-generated method stub
-		System.out.println("in LoginDao : ");
-		return super.orconnect();
-	}
+	
 
-	public int validate(Login login)  {
-
-		try {
-			//con = orconnect();
-			con = super.connect();
-			ps = con.prepareStatement("select * from accounts where username=? and password=?");
+	public int validate(Login login) throws Exception {
+			
+			con = super.orconnect();
+			//con = super.connect();
+			//ps = con.prepareStatement("select * from accounts where username=? and password=?");
+			ps = con.prepareStatement("select * from accounts where usename=? and password=?");
 			ps.setString(1, login.getUsername());
 			ps.setString(2, login.getPassword());
 
@@ -58,8 +54,5 @@ public class LoginDao extends Dao implements Authenticate{
 			}
 		}
 	}
-
-
-
 
 }
