@@ -1,12 +1,19 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dao.RegisterDao;
+import com.model.Customer;
 import com.model.Register;
 
 /**
@@ -31,7 +38,9 @@ public class RegisterController extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String accName = request.getParameter("acc_name");
+		String firstName = request.getParameter("first_name");
+		String middleName = request.getParameter("middle_name");
+		String lastName = request.getParameter("last_name");
 		String gender = request.getParameter("gender");
 		String dob = request.getParameter("dob");
 		String state = request.getParameter("state");
@@ -43,11 +52,28 @@ public class RegisterController extends HttpServlet {
 		String aadhar = request.getParameter("aadhar");
 		String pancard = request.getParameter("pancard");
 		String nationality = request.getParameter("nationality");
+		String accountType = request.getParameter("account_type");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String opdate = request.getParameter("opdate");
+//		String opdate = request.getParameter("opdate");
 		
-		Register r = new Register(accName, gender,dob ,state, city, area, pincode, email, mobile, aadhar, pancard, nationality, username, password, opdate);
+		Customer customer= new Customer(firstName, middleName, lastName, gender, dob, state, city, 
+				area, pincode, email, mobile, aadhar, pancard, nationality);
+		
+//		LocalDate date = LocalDate.now();
+		
+		String opdate="2014-05-14";
+//		String opdate = date.toString();
+		Register r = new Register(customer, accountType, username, password, opdate);
+		
+		RegisterDao rdao = new RegisterDao();
+		int i = rdao.setDetails(r);
+		if(i==0) {
+			System.out.println("Successful");
+		}
+		else {
+			System.out.println("not");
+		}
 	}
 
 	/**

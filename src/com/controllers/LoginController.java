@@ -1,6 +1,8 @@
 package com.controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.dao.LoginDao;
 import com.model.Login;
-
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
@@ -33,29 +34,40 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		Login l = new Login();
-		l.setUsername(username);
-		l.setPassword(password);
-		LoginDao loginDao = new LoginDao();
-		try {
-
-			int result = loginDao.validate(l);
-
-			System.out.println("Login result : id :  " + result);
-			HttpSession session = request.getSession(true);
-			if (result==-1) {
-				System.out.println("Error in login");
-				session.setAttribute("error", "Invalid credentials");
-			} 
-			else {
-				session.setAttribute("userid", result);
-				System.out.println("Successful");
-				response.sendRedirect("index.jsp");
-
+		if(username == "" || password == "") {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
+			request.setAttribute("error", "Please fill all the fields!!!!");
+			requestDispatcher.forward(request, response);
+		} 
+		else {
+			Login l = new Login();
+			l.setUsername(username);
+			l.setPassword(password);
+			LoginDao loginDao = new LoginDao();
+			try {
+	
+				int result = loginDao.validate(l);
+	
+				System.out.println("Login result : id :  " + result);
+				HttpSession session = request.getSession(true);
+				if (result==-1) {
+					System.out.println("Error in login");
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
+					request.setAttribute("error", "Invalid credentials!!!!");
+					requestDispatcher.forward(request, response);
+					
+				} 
+				else {
+					session.setAttribute("error", " ");
+					session.setAttribute("acc_no", result);
+					System.out.println("Successful");
+					response.sendRedirect("homepage.jsp");
+	
+				}
+	
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

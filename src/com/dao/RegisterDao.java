@@ -2,11 +2,12 @@ package com.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.JDBCType;
 import java.sql.SQLException;
 
+import com.model.Customer;
 import com.model.Register;
 import com.services.AccountCreation;
-import com.services.Main;
 
 public class RegisterDao extends Dao implements AccountCreation {
 
@@ -27,35 +28,44 @@ public class RegisterDao extends Dao implements AccountCreation {
 		return super.connect();
 	}
 
-	@Override
+//	@Override
 	public int setDetails(Register r) {
 		
 		try {
 			
 			con = connect();
-			
-			clstmt = con.prepareCall("{call insert_account(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-			clstmt.setString(1, r.getAccName());
-			clstmt.setString(2, r.getGender());
-			clstmt.setString(3, r.getDob());
-			clstmt.setString(4, r.getState());
-			clstmt.setString(5, r.getCity());
-			clstmt.setString(6, r.getArea());
-			clstmt.setInt(7, r.getPincode());
-			clstmt.setString(8, r.getEmail());
-			clstmt.setString(9, r.getMobile());
-			clstmt.setString(10, r.getAadhar());
-			clstmt.setString(11, r.getPancard());
-			clstmt.setString(12, r.getNationality());
-			clstmt.setString(13, r.getUsername());
-			clstmt.setString(14, r.getPassword());
-			clstmt.setString(15, r.getOpdate());
-			
+			Customer customer = r.getCustomer();
+			clstmt = con.prepareCall("{call insert_customers(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+			clstmt.setString(1, customer.getFirstName());
+			clstmt.setString(2, customer.getMiddleName());
+			clstmt.setString(3, customer.getLastName());
+			clstmt.setString(4, customer.getGender());
+			clstmt.setString(5, customer.getDob());
+			clstmt.setString(6, customer.getState());
+			clstmt.setString(7, customer.getCity());
+			clstmt.setString(8, customer.getArea());
+			clstmt.setInt(9, customer.getPincode());
+			clstmt.setString(10, customer.getEmail());
+			clstmt.setString(11, customer.getMobile());	
+			clstmt.setString(12, customer.getAadhar());
+			clstmt.setString(13, customer.getPancard());
+			clstmt.setString(14, customer.getNationality());
+			clstmt.registerOutParameter(15, JDBCType.INTEGER);
 			
 			boolean result = clstmt.execute();
 			System.out.println(result);
-			if(result) {
-				return 0;
+			if(result==false) {
+				int cid = clstmt.getInt(15);
+				clstmt = con.prepareCall("{call insert_account(?,?,?,?,?)}");
+				clstmt.setInt(1, cid);
+				clstmt.setString(2, r.getAccount_type());
+				clstmt.setString(3, r.getUsername());
+				clstmt.setString(4, r.getPassword());
+				clstmt.setString(5, r.getOpdate());
+				boolean accres = clstmt.execute();
+				int res ;
+				res = (accres==true) ? 0 : -1 ;
+				return res;
 			}
 			
 		}catch (Exception e) {
