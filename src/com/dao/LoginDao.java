@@ -25,9 +25,10 @@ public class LoginDao extends Dao implements Authenticate{
 		return super.orconnect();
 	}
 
-	public int validate(Login login) throws Exception {
-			
-//			con = orconnect();
+	public int validate(Login login)  {
+
+		try {
+			//con = orconnect();
 			con = super.connect();
 			ps = con.prepareStatement("select * from accounts where username=? and password=?");
 			ps.setString(1, login.getUsername());
@@ -42,6 +43,20 @@ public class LoginDao extends Dao implements Authenticate{
 			else {
 				return -1;
 			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+		finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 

@@ -22,6 +22,7 @@
     
 	    <h2 class="head">Registration Form</h2>
 	    <form class="mt-3 p-3" name="myform" action="RegisterController" method="post">
+	    <span class="text-danger" style="margin-left: 15px"> ${error_register} </span>
         <div class="row p-3">
             <div class="form-group col-md-4">
                 <input type="text" class="form-control text-center" id="first_name" name="first_name" placeholder="First Name" />
@@ -105,6 +106,17 @@
                 <input type="text" class="form-control text-center" id="nationality" name="nationality" placeholder="Nationality" />
             </div>
         </div>
+        
+        <div class="row p-3">
+            <div class="form-group col-md-12">
+                <select class="form-control selectpicker" data-style="btn btn-link" id="account_type" name="account_type"
+                    style="text-indent: 45%;">
+                    <option selected disabled>Account Type</option>
+                    <option>Savings</option>
+                    <option>Current</option>
+                </select>
+            </div>
+       	</div>
         <div class="row p-3">
             <div class="form-group col-md-12">
                 <input type="text" class="form-control text-center" id="username" name="username" placeholder="Username" />
@@ -119,8 +131,8 @@
         
          <div class="row p-3">
             <div class="form-group col-md-12">
-		        <button type="submit" name="submit" value="Submit" class="btn btn-primary sbtn" >Register</button>
-		        <a name="cancel" href="login.jsp" class="btn btn-danger abtn" >Cancel</a>
+		        <button type="submit" name="submit" value="Submit" class="btn btn-primary sbtn" style="width: 49%" >Register</button>
+		        <a name="cancel" href="login.jsp" class="btn btn-danger abtn" style="width: 49%">Cancel</a>
 		        <!-- <input type="submit" name="submit" value="Submit" class="btn btn-success"  /> -->
 	        </div>
             

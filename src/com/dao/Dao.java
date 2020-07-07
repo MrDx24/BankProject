@@ -10,12 +10,12 @@ public class Dao {
 	String url = "jdbc:mysql://localhost:3306/bank";
 	String username = "root";
 	String password = "root";
-	
-	
+
+
 	String orurl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String orusername = "system";
 	String orpassword = "sanket123";
-	
+
 	public Connection con = null;
 
 	public Dao() {
@@ -33,6 +33,7 @@ public class Dao {
 			System.out.println(e.getMessage());
 		}
 
+
 		return con; 
 
 
@@ -43,7 +44,7 @@ public class Dao {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			con = DriverManager.getConnection(orurl, orusername, orpassword); 
-		
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

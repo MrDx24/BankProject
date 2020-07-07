@@ -35,3 +35,16 @@ END$$
 
 DELIMITER ;
 
+user profile : 
+USE `bank`;
+DROP procedure IF EXISTS `userProfile`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE PROCEDURE userProfile (IN acc_no INT(11))
+BEGIN
+	select c.*, a.account_no, a.account_type, a.account_balance from customers c INNER JOIN accounts a on c.customer_id=a.customer_id where a.account_no=acc_no;
+END$$
+
+DELIMITER ;
+

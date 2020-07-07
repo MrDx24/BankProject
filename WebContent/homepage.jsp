@@ -29,7 +29,7 @@
     <div class="row"style="border : 1px solid black; height: 280px; ">
     	<div class="container col-md-6 text-center" style="border : 1px solid black">
 		    <form>
-				<button class="btn btn-success">Transfer</button>
+				<a class="btn btn-warning" href="userprofile.jsp" >User Profile</a>
 		    </form>
 		 </div>
 		 <div class="container col-md-6 text-center" style="border : 1px solid black">   

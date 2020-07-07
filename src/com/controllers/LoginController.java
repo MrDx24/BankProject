@@ -46,9 +46,9 @@ public class LoginController extends HttpServlet {
 			l.setPassword(password);
 			LoginDao loginDao = new LoginDao();
 			try {
-	
+
 				int result = loginDao.validate(l);
-	
+
 				System.out.println("Login result : id :  " + result);
 				HttpSession session = request.getSession(true);
 				if (result==-1) {
@@ -56,16 +56,16 @@ public class LoginController extends HttpServlet {
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
 					request.setAttribute("error", "Invalid credentials!!!!");
 					requestDispatcher.forward(request, response);
-					
+
 				} 
 				else {
 					session.setAttribute("error", " ");
 					session.setAttribute("acc_no", result);
 					System.out.println("Successful");
 					response.sendRedirect("homepage.jsp");
-	
+
 				}
-	
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

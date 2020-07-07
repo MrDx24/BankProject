@@ -12,16 +12,16 @@ import com.services.Main;
 
 public class RegisterDao extends Dao implements AccountCreation {
 
-	
+
 	private Connection con = null;
 	private CallableStatement clstmt = null;
-	
-	
-			
+
+
+
 	public RegisterDao() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public Connection connect() {
 		// TODO Auto-generated method stub
@@ -29,11 +29,11 @@ public class RegisterDao extends Dao implements AccountCreation {
 		return super.connect();
 	}
 
-//	@Override
+	//	@Override
 	public int setDetails(Register r) {
-		
+
 		try {
-			
+
 			con = connect();
 			Customer customer = r.getCustomer();
 			clstmt = con.prepareCall("{call insert_customers(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
@@ -52,7 +52,7 @@ public class RegisterDao extends Dao implements AccountCreation {
 			clstmt.setString(13, customer.getPancard());
 			clstmt.setString(14, customer.getNationality());
 			clstmt.registerOutParameter(15, JDBCType.INTEGER);
-			
+
 			boolean result = clstmt.execute();
 			System.out.println(result);
 			if(result==false) {
@@ -68,7 +68,7 @@ public class RegisterDao extends Dao implements AccountCreation {
 				res = (accres==true) ? 0 : -1 ;
 				return res;
 			}
-			
+
 		}catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -80,12 +80,12 @@ public class RegisterDao extends Dao implements AccountCreation {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return 0;
 	}
-	
-	
-	
 
-	
+
+
+
+
 }
