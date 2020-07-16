@@ -70,5 +70,30 @@ public class AddPayeeDao extends Dao implements AddPayeeService {
 		}
 
 	}
+	
+	public int deletePayee(int acc_no, int payee_acc_no) {
+		
+		try {
+			con = super.connect();
+
+			clstmt = con.prepareCall("{?=call deletePayee(?,?)}");
+			clstmt.registerOutParameter(1, JDBCType.INTEGER);
+			clstmt.setInt(2, acc_no);
+			clstmt.setInt(3, payee_acc_no);
+			
+			
+			clstmt.execute();
+			int ans = clstmt.getInt(1);
+			
+			return ans;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -2;
+		}
+		
+		
+		
+	}
 
 }

@@ -73,7 +73,7 @@ public class RegisterController extends HttpServlet {
 
 			LocalDate date = LocalDate.now();
 			String opdate = date.toString();
-			Register r = new Register(customer, accountType, username, password, opdate);
+			Register r = new Register(customer, accountType, username, password);
 
 			RegisterDao rdao = new RegisterDao();
 			int i = rdao.setDetails(r);

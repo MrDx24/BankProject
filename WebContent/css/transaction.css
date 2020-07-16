@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+	font-family: 'Lato';
+}
+
+form.mt-3.p-3.form {
+	
+}
+
+select {
+	text-indent: 44%;
+}
+
+.cont {
+	margin-top: 90px;
+}
+
+.payeeName {
+	/* border: 1px solid black; */
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin: 10px 10px 0px 10px;
+}
+
+.payeeAmount {
+	/* border: 1px solid black; */
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin: 10px 10px 0px 10px;
+}
+
+.sbtn {
+	width: 100%;
+}
+
+.head {
+	/* border: 1px solid black;  */
+	font-family : 'Lato';
+	margin-left :  15px;
+	width: 97%;
+}
+
+.name {
+	font-family: 'Lato';
+}

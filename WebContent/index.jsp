@@ -14,15 +14,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- Material Kit CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" />
-     <link rel="stylesheet"  type="text/css" href="register.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
 <body>
 
-	<div class="container"  id="body1">
+	<div class="container cont"  >
     
-	    <h2 class="head">Registration Form</h2>
-	    <form class="mt-3 p-3" name="myform" action="RegisterController" method="post">
-	    <span class="text-danger" style="margin-left: 15px"> ${error_register} </span>
+	    <form class="mt-3 p-3 form formreg" name="myform" action="RegisterController" method="post">
+	    <h3 class="head"><img src="images/small-logo.png" alt="Bank" width="50px">Registration Form</h3>
+	    <hr>
+	    <% String str = (String) request.getAttribute("error_register"); %>
+	    <%if(str !=null) {%>
+	    	<span class="text-danger fa fa-times-circle-o" style="margin-left: 15px"> ${error_register} </span>
+	    <%} %>
         <div class="row p-3">
             <div class="form-group col-md-4">
                 <input type="text" class="form-control text-center" id="first_name" name="first_name" placeholder="First Name" />
@@ -89,7 +93,7 @@
                 <input type="text" class="form-control text-center" id="mobile" name="mobile" placeholder="Contact Number" />
             </div>
         </div>
-        
+        <hr>
         <div class="row p-3">
             <div class="form-group col-md-12">
                 <input type="text" class="form-control text-center" id="aadhar" name="aadhar" placeholder="Aadhar Number" />
@@ -106,7 +110,7 @@
                 <input type="text" class="form-control text-center" id="nationality" name="nationality" placeholder="Nationality" />
             </div>
         </div>
-        
+        <hr>
         <div class="row p-3">
             <div class="form-group col-md-12">
                 <select class="form-control selectpicker" data-style="btn btn-link" id="account_type" name="account_type"

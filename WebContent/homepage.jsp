@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="cong.css" rel="stylesheet"type="text/css"/>
+	<link href="css/cong.css" rel="stylesheet"type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=play" rel="stylesheet">
 </head>
 <body>
@@ -34,7 +34,7 @@
 		 </div>
 		 <div class="container col-md-6 text-center" style="border : 1px solid black">   
 		    <form>
-				<button class="btn btn-success">Transfer</button>
+				<a href="account_st.jsp" class="btn btn-success">Account statement</a>
 		    </form>
 	    </div>
     </div>

@@ -1,0 +1,50 @@
+@CHARSET "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+    font-family: 'Lato';
+}
+
+.row {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.pt-3, .py-3 {
+    background: inherit;
+}
+
+.mainpagetxt {
+    /*border: 1px solid black; */
+    text-align: center;
+    width: 100%;
+    margin-left: 20px;
+    /*margin: 100px auto 40px auto ;*/
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    float: right;
+    color: rgb(72, 89, 235);
+    text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.imagebg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+.page-footer {
+    padding: 0px;
+    background: #111111!important;
+    color: #bfbfbf;
+}
+
+.footer-copyright.text-center.py-3 {
+    background: #000000;
+}
+
+a {
+	text-decoration: none; 
+	color: blue; 
+	font-family: 'Lato'
+}

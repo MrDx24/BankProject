@@ -1,0 +1,81 @@
+@CHARSET "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+
+body{
+    background: #ffffff;
+    font-family: 'Lato';
+    background: url("images/stest3.png");
+}
+.card h5{
+    padding: 10px 0px;
+}
+.card{
+    transition: .5s;
+    background: #eee;
+}
+.card:hover i ,h5{
+    color: #1E90FF;
+}
+.card:hover{
+    transform: scale(1.03);
+    background: #fff;
+}
+
+
+.body-image {
+    background: url("images//test3.png");
+    background-size: cover;
+
+}
+
+a.custom-link {
+	text-decoration : none ;
+}
+.test-cust {
+	font-size: 15px;
+	
+}
+.card {
+	padding: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	color: black;
+}
+
+.large {
+	
+	font-size: 40px;
+}
+
+.right{
+    float: right;
+}
+.bg-dark {
+    background: #111111!important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* background image : Savings.png */
+.imagebg {
+    background-image: url("images/test3.png")
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+
+.row {
+    margin-top: 50px;
+}
+.mainpagetxttr {
+    /* border: 1px solid black; */
+    text-align: center;
+    width: 100%;
+    text-align:center;
+    color: black;
+    text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h3, h4, h2 {
+    font-style: 'Lato';
+}
+

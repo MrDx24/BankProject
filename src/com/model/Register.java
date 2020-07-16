@@ -9,14 +9,14 @@ public class Register {
 	String password;
 	String opdate;
 	
-	public Register(Customer customer, String account_type, String username, String password, String opdate) {
+	public Register(Customer customer, String account_type, String username, String password) {
 		super();
 		this.customer =  customer;
 		
 		this.account_type = account_type;
 		this.username = username;
 		this.password = password;
-		this.opdate = opdate;
+		
 	}
 	
 	
@@ -56,13 +56,7 @@ public class Register {
 		this.password = password;
 	}
 
-	public String getOpdate() {
-		return opdate;
-	}
-
-	public void setOpdate(String opdate) {
-		this.opdate = opdate;
-	}
+	
 	
 	
 	

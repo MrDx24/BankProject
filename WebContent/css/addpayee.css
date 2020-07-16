@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+	font-family: 'Lato';
+}
+
+.cont {
+	margin-top: 110px;
+}
+
+.formpayee {
+	/* border: 1px solid black; */
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.table-custom {
+	padding:10px;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 20px;
+}
+
+h3 {
+	margin-left: 20px;
+}
+
+input[type="search"] {
+	border-radius: 5px;
+	border: 1px solid black;
+	padding : 5px;
+	outline: none; 
+}

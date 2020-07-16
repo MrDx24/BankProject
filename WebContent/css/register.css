@@ -1,0 +1,44 @@
+@CHARSET "ISO-8859-1";
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+	font-family: 'Lato';
+}
+form.mt-3.p-3.form {
+	
+}
+
+h2 {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+form.mt-3.p-3.form.formreg {
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.cont {
+	/* border: 1px solid black;
+	margin: 10px; */
+}
+
+.formreg {
+	border: 1px solid black;
+	border-radius :  5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+input {
+	
+}
+
+.abtn {
+    width: 49%;
+}
+
+.sbtn {
+    width: 49%;
+}
+

@@ -16,7 +16,7 @@
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="log.css">
+<link rel="stylesheet" type="text/css" href="css/log.css">
 </head>
 <body>
 	<div class="container" style="height: 361px; ">
@@ -27,13 +27,13 @@
 			<div class="row p-3">
 				<div class="form-group col-md-12">
 					<input type="password" pattern="[0-9]{4}" class="form-control "  id="pin" maxlength="4"
-						  name="pin" placeholder="Pin" />
+						  name="pin" placeholder="Enter Pin" />
 				</div>
 
 				<div class="form-group col-md-12">
 					<input type="password" pattern="[0-9]{4}"  class="form-control " id="conformPin"
 						maxlength="4" accept="number" name="conformPin"
-						placeholder="ConformPin" />
+						placeholder="Enter Confirm Pin" />
 				</div>
 
 				<div class="form-group col-md-12" style="border: 1px solid inherit;">

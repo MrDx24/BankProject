@@ -21,6 +21,8 @@ BEGIN
 	end if;
 END
 
+<p style="font-size:20px;color:red;">-100 <i class="fa fa-arrow-right" style="transform: rotate(-45deg);"></i></p><br><br>
+<p style="font-size:20px;color:green;">+100 <i class="fa fa-arrow-left" style="transform: rotate(-45deg);font-size:20px;"></i></p>
 
 payeelist :- 
 USE `bank`;
@@ -44,6 +46,246 @@ USE `bank`$$
 CREATE PROCEDURE userProfile (IN acc_no INT(11))
 BEGIN
 	select c.*, a.account_no, a.account_type, a.account_balance from customers c INNER JOIN accounts a on c.customer_id=a.customer_id where a.account_no=acc_no;
+END$$
+
+DELIMITER ;
+
+transfer function :
+USE `bank`;
+DROP function IF EXISTS `transactionProcess`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `transactionProcess`(sender_acc INT, reciever_acc INT(11), amount INT) RETURNS int(11)
+BEGIN
+	declare sender_balance, reciever_balance, send_bal, recieve_bal, s_cid, r_cid INT;
+
+    select account_balance, customer_id into sender_balance, s_cid from accounts where account_no=sender_acc;
+    select account_balance, customer_id into reciever_balance, r_cid from accounts where account_no=reciever_acc;
+    
+    if sender_balance <= 1000 then 
+		return -1;
+	elseif amount > sender_balance then
+		return -2;
+	else
+		SET send_bal = sender_balance - amount;
+        SET recieve_bal = reciever_balance + amount;
+        if send_bal < 1000 then
+			return -3;
+		else
+			update accounts set account_balance = send_bal where account_no=sender_acc;
+            update accounts set account_balance = recieve_bal where account_no=reciever_acc;
+            insert into transactions(cid, account_no, amount, tr_date, tr_time,operation) values (s_cid, reciever_acc, amount, curdate(), curtime(),"sent");
+            insert into transactions(cid, account_no, amount, tr_date, tr_time,operation) values (r_cid, sender_acc, amount, curdate(), curtime(),"recieved");
+            return 1;
+		end if;
+	end if;
+RETURN 1;
+END$$
+
+DELIMITER ;
+
+ 
+
+
+insert account :- 
+USE `bank`;
+DROP procedure IF EXISTS `insert_account`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_account`(IN cust_id INT, IN acc_type varchar(45), IN username varchar(45),
+															 IN psswd varchar(45))
+BEGIN
+	INSERT INTO `bank`.`accounts`(`customer_id`, `account_type`,`username`,`password`,`opening_date`)
+VALUES(cust_id, acc_type, username, psswd, curdate());
+select * from `bank`.`accounts`;
+END$$
+
+DELIMITER ;
+
+account statement : 
+USE `bank`;
+DROP procedure IF EXISTS `account_statement`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE PROCEDURE account_statement (IN acc_no INT(11), IN from_date date, IN to_date date)
+BEGIN
+	select * from transactions where sender_acc_no=acc_no and tr_date between from_date and to_date;
+END$$
+
+DELIMITER ;
+
+
+deletePayee : 
+procedure : 
+USE `bank`;
+DROP procedure IF EXISTS `bank`.`new_procedure`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE deletePayee(IN accNo INT(11), IN payeeAccNo INT(11))
+BEGIN
+	delete from addpayee where acc_no = accNo and payee_acc_no = payeeAccNo;
+END$$
+
+DELIMITER ;
+;
+
+function : 
+USE `bank`;
+DROP function IF EXISTS `deletePayee`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE FUNCTION deletePayee(accNo INT(11), payeeAccNo INT(11))
+RETURNS INTEGER
+BEGIN
+	declare before_del , after_del INT;
+	select count(*) into before_del from addpayee;
+	delete from addpayee where acc_no = accNo and payee_acc_no = payeeAccNo;
+    select count(*) into after_del from addpayee;
+	if before_del = after_del  then
+		return 1; 
+    else 
+		return -1;
+	end if;
+
+END$$
+
+DELIMITER ;
+
+account_balance :  
+USE `bank`;
+DROP function IF EXISTS `account_balance`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE FUNCTION account_balance (id INT)
+RETURNS INTEGER
+BEGIN
+	declare balance INT;
+    select account_balance into balance from accounts where account_no=id;
+    return balance;
+
+END$$
+
+DELIMITER ;
+
+
+
+
+
+
+
+declare sender_balance INT;
+    declare reciever_balance INT;
+    declare send_bal INT;
+    declare recieve_bal INT;
+    select account_balance into sender_balance from accounts where account_no=sender_acc;
+    select account_balance into reciever_balance from accounts where account_no=reciever_acc;
+    if sender_balance <= 1000 then 
+		return -1;
+	else
+		SET send_bal = sender_balance - amount;
+        SET recieve_bal = reciever_balance + amount;
+        if send_bal < 1000 then
+			return -2;
+		else
+			update accounts set account_balance = send_bal where account_no=sender_acc;
+            update accounts set account_balance = recieve_bal where account_no=reciever_acc;
+            insert into transactions(sender_acc_no, reciever_acc_no, amount, tr_date, tr_time,description) values (sender_acc, reciever_acc, amount, curdate(), curtime(),"sent");
+            insert into transactions(sender_acc_no, reciever_acc_no, amount, tr_date, tr_time,description) values (sender_acc, reciever_acc, amount, curdate(), curtime(),"recieved");
+            return 1;
+		end if;
+	end if;
+	
+	
+	
+	USE `bank`;
+DROP function IF EXISTS `transactionProcess`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `transactionProcess`(sender_acc INT, reciever_acc INT(11), amount INT) RETURNS int(11)
+BEGIN
+	declare sender_balance, reciever_balance, send_bal, recieve_bal, s_cid, r_cid INT;
+
+    select account_balance, customer_id into sender_balance, s_cid from accounts where account_no=sender_acc;
+    select account_balance, customer_id into reciever_balance, r_cid from accounts where account_no=reciever_acc;
+    
+    if sender_balance <= 1000 then 
+		return -1;
+	else
+		SET send_bal = sender_balance - amount;
+        SET recieve_bal = reciever_balance + amount;
+        if send_bal < 1000 then
+			return -2;
+		else
+			update accounts set account_balance = send_bal where account_no=sender_acc;
+            update accounts set account_balance = recieve_bal where account_no=reciever_acc;
+            insert into transactions(cid, account_no, amount, tr_date, tr_time,operation) values (s_cid, reciever_acc, amount, curdate(), curtime(),"sent");
+            insert into transactions(cid, account_no, amount, tr_date, tr_time,operation) values (r_cid, sender_acc, amount, curdate(), curtime(),"recieved");
+            return 1;
+		end if;
+	end if;
+RETURN 1;
+END$$
+
+DELIMITER ;
+
+USE `bank`;
+DROP function IF EXISTS `transactionProcess`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `transactionProcess`(sender_acc INT(11), reciever_acc INT(11), amount INT) 
+RETURNS int(11)
+BEGIN
+	declare sender_balance INT;
+    declare reciever_balance INT;
+    declare send_bal INT;
+    declare recieve_bal INT;
+    select account_balance into sender_balance from accounts where account_no=sender_acc;
+    select account_balance into reciever_balance from accounts where account_no=reciever_acc;
+    if sender_balance <= 1000 then 
+		return -1;
+	else
+		SET send_bal = sender_balance - amount;
+        SET recieve_bal = reciever_balance + amount;
+        if send_bal < 1000 then
+			return -2;
+		else
+			update accounts set account_balance = send_bal where account_no=sender_acc;
+            update accounts set account_balance = recieve_bal where account_no=reciever_acc;
+            insert into transactions(sender_acc_no, reciever_acc_no, amount, tr_date, tr_time) values (sender_acc, reciever_acc, amount, curdate(), curtime());
+            return 1;
+		end if;
+	end if;
+RETURN 1;
+END$$
+
+DELIMITER ;	
+
+
+tr_psswd : 
+USE `bank`;
+DROP function IF EXISTS `check_tr_psswd`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE FUNCTION check_tr_psswd (accno INT, psswd varchar(45))
+RETURNS INTEGER
+BEGIN
+declare tr_psswd varchar(45);
+	select trpsswd into tr_psswd from accounts where account_no = accno;
+    if tr_psswd = psswd then 
+		return 1;
+    else
+		return -1;
+    end if;
+
 END$$
 
 DELIMITER ;

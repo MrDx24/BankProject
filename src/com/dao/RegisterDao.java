@@ -56,12 +56,12 @@ public class RegisterDao extends Dao implements AccountCreation {
 			System.out.println(result);
 			if(result==false) {
 				int cid = clstmt.getInt(15);
-				clstmt = con.prepareCall("{call insert_account(?,?,?,?,?)}");
+				clstmt = con.prepareCall("{call insert_account(?,?,?,?)}");
 				clstmt.setInt(1, cid);
 				clstmt.setString(2, r.getAccount_type());
 				clstmt.setString(3, r.getUsername());
 				clstmt.setString(4, r.getPassword());
-				clstmt.setString(5, r.getOpdate());
+//				clstmt.setString(5, r.getOpdate());
 				boolean accres = clstmt.execute();
 				int res ;
 				res = (accres==true) ? 0 : -1 ;
